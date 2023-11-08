@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=ru.directum.DirectumJazz
+Exec=/usr/bin/ru.directum.DirectumJazz
+Name=Directum Jazz
+Name[ru]=Директум Джаз
+
+[X-Application]
+Permissions=SecureStorage;PushNotifications;Documents;Internet
+OrganizationName=ru.directum
+ApplicationName=DirectumJazz
+ExecDBus=/usr/bin/ru.directum.DirectumJazz
