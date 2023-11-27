@@ -43,9 +43,13 @@ CONFIG += \
 PKGCONFIG += \
 
 SOURCES += \
+    src/auth.cpp \
     src/main.cpp \
 
+QT += network
+
 HEADERS += \
+    headers/auth.hpp
 
 DISTFILES += \
     rpm/ru.directum.DirectumJazz.spec \
