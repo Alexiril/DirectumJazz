@@ -66,7 +66,8 @@ Page {
 
         SectionHeader {
             objectName: "mainHeader"
-            text: qsTr("#mainHeader")
+            anchors {horizontalCenter: parent.horizontalCenter}
+            text: qsTr("Вход в приложение ")
         }
 
         Label {
@@ -76,7 +77,43 @@ Page {
             font.pixelSize: Theme.fontSizeSmall
             textFormat: Text.RichText
             wrapMode: Text.WordWrap
-            text: qsTr("#mainText")
+            text: qsTr("Введите логин")
+        }
+        TextField{
+        objectName: "login"
+        width: parent.wight
+        anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
+        placeholderText: qsTr("Введите логин")
+        inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
+        EnterKey.onClicked: console.log(text)
+        }
+        Label {
+            objectName: "mainText"
+            anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
+            color: palette.highlightColor
+            font.pixelSize: Theme.fontSizeSmall
+            textFormat: Text.RichText
+            wrapMode: Text.WordWrap
+            text: qsTr("Введите пароль")
+        }
+        TextField{
+        objectName: "Password"
+        width: parent.wight
+        anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
+        placeholderText: qsTr("Введите пароль")
+        echoMode: TextInput.Password
+        inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
+        EnterKey.onClicked: console.log(text)
+        }
+        Button{
+            anchors{horizontalCenter: parent.horizontalCenter}
+            preferredWidth: Theme.buttonWidthMedium
+            text: "Войти"
+            onClicked: console.log("Enter")
+
+
+        }
+
+
         }
     }
-}

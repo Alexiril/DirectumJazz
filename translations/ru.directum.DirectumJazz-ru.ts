@@ -44,16 +44,23 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="52"/>
         <source>Directum Jazz</source>
-        <translation>Директум Джаз</translation>
+        <translation type="unfinished">Директум Джаз</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="74"/>
-        <source>#mainHeader</source>
+        <location filename="../qml/pages/MainPage.qml" line="70"/>
+        <source>Вход в приложение </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="84"/>
-        <source>#mainText</source>
+        <location filename="../qml/pages/MainPage.qml" line="80"/>
+        <location filename="../qml/pages/MainPage.qml" line="86"/>
+        <source>Введите логин</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="97"/>
+        <location filename="../qml/pages/MainPage.qml" line="103"/>
+        <source>Введите пароль</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
