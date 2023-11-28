@@ -37,6 +37,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import Directum.Network 1.0
 
 Page {
     objectName: "mainPage"
@@ -80,12 +81,12 @@ Page {
             text: qsTr("Введите логин")
         }
         TextField{
-        objectName: "login"
-        width: parent.wight
-        anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
-        placeholderText: qsTr("Введите логин")
-        inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
-        EnterKey.onClicked: console.log(text)
+            id: login
+            width: parent.wight
+            anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
+            placeholderText: qsTr("Введите логин")
+            inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
+            EnterKey.onClicked: console.log(text)
         }
         Label {
             objectName: "mainText"
@@ -97,23 +98,47 @@ Page {
             text: qsTr("Введите пароль")
         }
         TextField{
-        objectName: "Password"
-        width: parent.wight
-        anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
-        placeholderText: qsTr("Введите пароль")
-        echoMode: TextInput.Password
-        inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
-        EnterKey.onClicked: console.log(text)
+            id: password
+            width: parent.wight
+            anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
+            placeholderText: qsTr("Введите пароль")
+            echoMode: TextInput.Password
+            inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
+            EnterKey.onClicked: console.log(text)
+        }
+        Auth {
+            id: auth
+            function auth_finished() {
+                console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                if (auth_result === Auth.Error) {
+                    console.log("Error happened");
+                    console.log(auth.auth_err);
+                    error_label.text = qsTr("произошла ошибка");
+                }
+                if (auth_result === Auth.Okay) {
+                    PageStack.push(Qt.resolvedUrl("Menu.qml"))
+                }
+                return 0;
+            }
+        }
+        Label {
+            id: error_label
+            anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
+            color: palette.highlightColor
+            font.pixelSize: Theme.fontSizeSmall
+            textFormat: Text.RichText
+            wrapMode: Text.WordWrap
+            text: "hcggdgfgd"
         }
         Button{
+            objectName: "EnterButton"
             anchors{horizontalCenter: parent.horizontalCenter}
             preferredWidth: Theme.buttonWidthMedium
             text: "Войти"
-            onClicked: console.log("Enter")
 
-
-        }
-
-
+            onClicked: {
+                auth.try_auth(login.text, password.text);
+            }
         }
     }
+}

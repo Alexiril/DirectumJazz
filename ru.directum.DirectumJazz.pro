@@ -52,6 +52,7 @@ HEADERS += \
     headers/auth.hpp
 
 DISTFILES += \
+    qml/pages/Menu.qml \
     rpm/ru.directum.DirectumJazz.spec \
     AUTHORS.md \
     CODE_OF_CONDUCT.md \

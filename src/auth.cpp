@@ -12,20 +12,23 @@ void Auth::try_auth(const QString &login, const QString &password) {
     timer.start(30000);
     timer.setSingleShot(true);
     connect(&timer, &QTimer::timeout, this, [&reply]() { reply->abort(); });
-    connect(manager, &QNetworkAccessManager::finished, [this](QNetworkReply* reply) {
-            if (reply->error())
-            {
-                auth_result_ = AuthResult::Error;
-                auth_err_ = reply->errorString();
-                qDebug() << "Auth error: " << auth_err_ << "\n";
-            }
-            else
-            {
-                auth_result_ = AuthResult::Okay;
-                token = QString(reply->readAll());
-                qDebug() << "Auth okay, token: " << token_ << "\n";
-            }
-        });
+    connect(manager, &QNetworkAccessManager::finished, [&](QNetworkReply* reply) {
+        if (reply->error())
+        {
+            auth_result_ = AuthResult::Error;
+            auth_err_ = reply->errorString();
+            qDebug() << "Auth error: " << auth_err_ << "\n";
+
+        }
+        else
+        {
+            auth_result_ = AuthResult::Okay;
+            token = QString(reply->readAll());
+            qDebug() << "Auth okay, token: " << token << "\n";
+        }
+        int returned = 0;
+        QMetaObject::invokeMethod(this, "auth_finished", Qt::ConnectionType::DirectConnection, Q_RETURN_ARG(int, returned));
+    });
     connect(manager, &QNetworkAccessManager::finished, manager, &QNetworkAccessManager::deleteLater);
     connect(manager, &QNetworkAccessManager::finished, reply, &QNetworkReply::deleteLater);
 }

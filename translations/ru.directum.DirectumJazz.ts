@@ -42,25 +42,38 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="52"/>
+        <location filename="../qml/pages/MainPage.qml" line="53"/>
         <source>Directum Jazz</source>
         <translation type="unfinished">Directum Jazz</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="70"/>
+        <location filename="../qml/pages/MainPage.qml" line="71"/>
         <source>Вход в приложение </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="80"/>
-        <location filename="../qml/pages/MainPage.qml" line="86"/>
+        <location filename="../qml/pages/MainPage.qml" line="81"/>
+        <location filename="../qml/pages/MainPage.qml" line="87"/>
         <source>Введите логин</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="97"/>
-        <location filename="../qml/pages/MainPage.qml" line="103"/>
+        <location filename="../qml/pages/MainPage.qml" line="98"/>
+        <location filename="../qml/pages/MainPage.qml" line="104"/>
         <source>Введите пароль</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="116"/>
+        <source>произошла ошибка</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Menu</name>
+    <message>
+        <location filename="../qml/pages/Menu.qml" line="11"/>
+        <source>Иди в жопу тебе тут не рады</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
