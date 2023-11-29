@@ -1,5 +1,9 @@
 #include "headers/auth.hpp"
 
+QString UserLogin::function_user_login(){
+    return user_login;
+}
+
 void Auth::try_auth(const QString &login, const QString &password) {
     QNetworkAccessManager* manager = new QNetworkAccessManager(this);
     QNetworkRequest request;
@@ -24,6 +28,7 @@ void Auth::try_auth(const QString &login, const QString &password) {
         {
             auth_result_ = AuthResult::Okay;
             token = QString(reply->readAll());
+            user_login = login;
             qDebug() << "Auth okay, token: " << token << "\n";
         }
         emit authIsFinished();

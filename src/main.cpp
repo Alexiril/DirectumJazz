@@ -42,6 +42,7 @@
 int main(int argc, char *argv[])
 {
     qmlRegisterType<Auth>("Directum.Network", 1, 0, "Auth");
+    qmlRegisterType<UserLogin>("Directum.Network", 1, 0, "UserLogin");
     QScopedPointer<QGuiApplication> application(Aurora::Application::application(argc, argv));
     application->setOrganizationName(QStringLiteral("ru.directum"));
     application->setApplicationName(QStringLiteral("DirectumJazz"));

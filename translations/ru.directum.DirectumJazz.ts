@@ -70,12 +70,4 @@
         <translation type="unfinished">Directum Jazz</translation>
     </message>
 </context>
-<context>
-    <name>Menu</name>
-    <message>
-        <location filename="../qml/pages/Menu.qml" line="11"/>
-        <source>Иди в жопу тебе тут не рады</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
 </TS>

@@ -4,7 +4,14 @@
 #include <QtQuick>
 #include <QtNetwork>
 
-static QString token;
+static QString token = "";
+static QString user_login = "";
+
+class UserLogin: public QObject {
+    Q_OBJECT
+public:
+    Q_INVOKABLE QString function_user_login();
+};
 
 class Auth : public QObject {
     Q_OBJECT
