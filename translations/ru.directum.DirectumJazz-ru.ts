@@ -32,41 +32,42 @@
     </message>
 </context>
 <context>
+    <name>AuthPage</name>
+    <message>
+        <location filename="../qml/pages/AuthPage.qml" line="53"/>
+        <source>Directum Jazz</source>
+        <translation type="unfinished">Директум Джаз</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AuthPage.qml" line="69"/>
+        <source>Вход в приложение </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AuthPage.qml" line="79"/>
+        <location filename="../qml/pages/AuthPage.qml" line="85"/>
+        <source>Введите логин</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AuthPage.qml" line="96"/>
+        <location filename="../qml/pages/AuthPage.qml" line="102"/>
+        <source>Введите пароль</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AuthPage.qml" line="113"/>
+        <location filename="../qml/pages/AuthPage.qml" line="129"/>
+        <source>Войти</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Cover</name>
     <message>
         <location filename="../qml/cover/Cover.qml" line="46"/>
         <source>Directum Jazz</source>
         <translation type="unfinished">Директум Джаз</translation>
-    </message>
-</context>
-<context>
-    <name>MainPage</name>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="53"/>
-        <source>Directum Jazz</source>
-        <translation type="unfinished">Директум Джаз</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="71"/>
-        <source>Вход в приложение </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="81"/>
-        <location filename="../qml/pages/MainPage.qml" line="87"/>
-        <source>Введите логин</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="98"/>
-        <location filename="../qml/pages/MainPage.qml" line="104"/>
-        <source>Введите пароль</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="116"/>
-        <source>произошла ошибка</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

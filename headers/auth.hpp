@@ -8,6 +8,9 @@ static QString token;
 
 class Auth : public QObject {
     Q_OBJECT
+signals:
+    void authIsFinished();
+
 public:
     enum AuthResult { Okay, Error, Await };
     Q_ENUM(AuthResult)

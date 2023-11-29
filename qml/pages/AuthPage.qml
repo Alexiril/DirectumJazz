@@ -40,7 +40,7 @@ import Sailfish.Silica 1.0
 import Directum.Network 1.0
 
 Page {
-    objectName: "mainPage"
+    objectName: "authPage"
     allowedOrientations: Orientation.Portrait
 
     Column {
@@ -56,9 +56,7 @@ Page {
                     objectName: "aboutButton"
                     icon.source: "image://theme/icon-m-about"
                     anchors.verticalCenter: parent.verticalCenter
-
                     onClicked: {
-                        console.log("About page is opening")
                         pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
                     }
                 }
@@ -109,35 +107,50 @@ Page {
         Auth {
             id: auth
             function auth_finished() {
-                console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 if (auth_result === Auth.Error) {
-                    console.log("Error happened");
-                    console.log(auth.auth_err);
-                    error_label.text = qsTr("произошла ошибка");
+                    error_label.text = qsTr("Произошла ошибка: \"" + auth.auth_err + "\".");
+                    auth_button.tried_auth = false;
+                    auth_button.text = qsTr("Войти");
                 }
                 if (auth_result === Auth.Okay) {
-                    PageStack.push(Qt.resolvedUrl("Menu.qml"))
+                    error_label.text = "";
+                    pageStack.replace(Qt.resolvedUrl("Menu.qml"))
                 }
                 return 0;
             }
-        }
-        Label {
-            id: error_label
-            anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
-            color: palette.highlightColor
-            font.pixelSize: Theme.fontSizeSmall
-            textFormat: Text.RichText
-            wrapMode: Text.WordWrap
-            text: "hcggdgfgd"
+
         }
         Button{
+            id: auth_button
+            property bool tried_auth: false
             objectName: "EnterButton"
             anchors{horizontalCenter: parent.horizontalCenter}
             preferredWidth: Theme.buttonWidthMedium
-            text: "Войти"
-
+            text: qsTr("Войти")
             onClicked: {
-                auth.try_auth(login.text, password.text);
+                if (!auth_button.tried_auth) {
+                    auth.try_auth(login.text, password.text);
+                    auth_button.text = "···";
+                    auth_button.tried_auth = true;
+                }
+            }
+        }        
+        Label {
+            id: error_label
+            anchors{horizontalCenter: parent.horizontalCenter; margins: Theme.horizontalPageMargin }
+            width: parent.width - 10
+            color: palette.errorColor
+            font.pixelSize: Theme.fontSizeSmall
+            textFormat: Text.RichText
+            wrapMode: Label.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            text: ""
+        }
+        Connections {
+            target: auth
+            onAuthIsFinished: {
+                auth.auth_finished();
             }
         }
     }

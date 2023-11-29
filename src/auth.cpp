@@ -26,8 +26,7 @@ void Auth::try_auth(const QString &login, const QString &password) {
             token = QString(reply->readAll());
             qDebug() << "Auth okay, token: " << token << "\n";
         }
-        int returned = 0;
-        QMetaObject::invokeMethod(this, "auth_finished", Qt::ConnectionType::DirectConnection, Q_RETURN_ARG(int, returned));
+        emit authIsFinished();
     });
     connect(manager, &QNetworkAccessManager::finished, manager, &QNetworkAccessManager::deleteLater);
     connect(manager, &QNetworkAccessManager::finished, reply, &QNetworkReply::deleteLater);
