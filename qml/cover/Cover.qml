@@ -43,7 +43,7 @@ CoverBackground {
 
     CoverPlaceholder {
         objectName: "placeholder"
-        text: qsTr("Directum Jazz")
+        text: qsTr("#coverName")
         icon {
             source: Qt.resolvedUrl("../icons/DirectumJazz.svg")
             sourceSize { width: icon.width; height: icon.height }

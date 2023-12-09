@@ -66,7 +66,7 @@ Page {
         SectionHeader {
             objectName: "mainHeader"
             anchors {horizontalCenter: parent.horizontalCenter}
-            text: qsTr("Вход в приложение ")
+            text: qsTr("#signInLabel")
         }
 
         Label {
@@ -76,16 +76,18 @@ Page {
             font.pixelSize: Theme.fontSizeSmall
             textFormat: Text.RichText
             wrapMode: Text.WordWrap
-            text: qsTr("Введите логин")
+            text: qsTr("#enterLogin")
         }
+
         TextField{
             id: login
             width: parent.wight
             anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
-            placeholderText: qsTr("Введите логин")
+            placeholderText: qsTr("#enterLogin")
             inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
-            EnterKey.onClicked: console.log(text)
+            EnterKey.onClicked: auth_button.click();
         }
+
         Label {
             objectName: "mainText"
             anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
@@ -93,24 +95,26 @@ Page {
             font.pixelSize: Theme.fontSizeSmall
             textFormat: Text.RichText
             wrapMode: Text.WordWrap
-            text: qsTr("Введите пароль")
+            text: qsTr("#enterPassword")
         }
+
         TextField{
             id: password
             width: parent.wight
             anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
-            placeholderText: qsTr("Введите пароль")
+            placeholderText: qsTr("#enterPassword")
             echoMode: TextInput.Password
             inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
-            EnterKey.onClicked: console.log(text)
+            EnterKey.onClicked: auth_button.click();
         }
+
         Auth {
             id: auth
             function auth_finished() {
                 if (auth_result === Auth.Error) {
-                    error_label.text = qsTr("Произошла ошибка: \"" + auth.auth_err + "\".");
+                    error_label.text = qsTr("#errorOccured") + " \"" + auth.auth_err + "\".";
                     auth_button.tried_auth = false;
-                    auth_button.text = qsTr("Войти");
+                    auth_button.text = qsTr("#signIn");
                 }
                 if (auth_result === Auth.Okay) {
                     error_label.text = "";
@@ -120,21 +124,7 @@ Page {
             }
 
         }
-        Button{
-            id: auth_button
-            property bool tried_auth: false
-            objectName: "EnterButton"
-            anchors{horizontalCenter: parent.horizontalCenter}
-            preferredWidth: Theme.buttonWidthMedium
-            text: qsTr("Войти")
-            onClicked: {
-                if (!auth_button.tried_auth) {
-                    auth.try_auth(login.text, password.text);
-                    auth_button.text = "···";
-                    auth_button.tried_auth = true;
-                }
-            }
-        }        
+
         Label {
             id: error_label
             anchors{horizontalCenter: parent.horizontalCenter; margins: Theme.horizontalPageMargin }
@@ -147,6 +137,23 @@ Page {
             verticalAlignment: Text.AlignVCenter
             text: ""
         }
+
+        Button{
+            id: auth_button
+            property bool tried_auth: false
+            objectName: "EnterButton"
+            anchors{horizontalCenter: parent.horizontalCenter; margins: Theme.horizontalPageMargin}
+            preferredWidth: Theme.buttonWidthMedium
+            text: qsTr("#signIn")
+            onClicked: {
+                if (!auth_button.tried_auth) {
+                    auth.try_auth(login.text, password.text);
+                    auth_button.text = "···";
+                    auth_button.tried_auth = true;
+                }
+            }
+        }        
+
         Connections {
             target: auth
             onAuthIsFinished: {

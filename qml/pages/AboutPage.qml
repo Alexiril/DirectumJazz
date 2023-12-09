@@ -54,7 +54,7 @@ Page {
 
             PageHeader {
                 objectName: "pageHeader"
-                title: qsTr("About Application")
+                title: qsTr("#aboutLabel")
             }
 
             Label {

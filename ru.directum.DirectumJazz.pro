@@ -43,13 +43,13 @@ CONFIG += \
 PKGCONFIG += \
 
 SOURCES += \
-    src/auth.cpp \
     src/main.cpp \
+    src/network.cpp
 
 QT += network
 
 HEADERS += \
-    headers/auth.hpp
+    headers/network.hpp
 
 DISTFILES += \
     qml/pages/Menu.qml \

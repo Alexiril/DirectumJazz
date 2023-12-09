@@ -5,13 +5,13 @@
     <name>AboutPage</name>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="57"/>
-        <source>About Application</source>
+        <source>#aboutLabel</source>
         <translation>About Application</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="67"/>
         <source>#descriptionText</source>
-        <translation>&lt;p&gt;Описание Директум Джаз должно быть здесь :)&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Description of Directum Jazz for Aurora :)&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="72"/>
@@ -36,38 +36,43 @@
     <message>
         <location filename="../qml/pages/AuthPage.qml" line="53"/>
         <source>Directum Jazz</source>
-        <translation type="unfinished">Directum Jazz</translation>
+        <translation>Directum Jazz</translation>
     </message>
     <message>
         <location filename="../qml/pages/AuthPage.qml" line="69"/>
-        <source>Вход в приложение </source>
-        <translation type="unfinished"></translation>
+        <source>#signInLabel</source>
+        <translation>Sign in</translation>
     </message>
     <message>
         <location filename="../qml/pages/AuthPage.qml" line="79"/>
-        <location filename="../qml/pages/AuthPage.qml" line="85"/>
-        <source>Введите логин</source>
-        <translation type="unfinished"></translation>
+        <location filename="../qml/pages/AuthPage.qml" line="86"/>
+        <source>#enterLogin</source>
+        <translation>Enter login</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AuthPage.qml" line="96"/>
-        <location filename="../qml/pages/AuthPage.qml" line="102"/>
-        <source>Введите пароль</source>
-        <translation type="unfinished"></translation>
+        <location filename="../qml/pages/AuthPage.qml" line="98"/>
+        <location filename="../qml/pages/AuthPage.qml" line="105"/>
+        <source>#enterPassword</source>
+        <translation>Enter password</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AuthPage.qml" line="113"/>
-        <location filename="../qml/pages/AuthPage.qml" line="129"/>
-        <source>Войти</source>
-        <translation type="unfinished"></translation>
+        <location filename="../qml/pages/AuthPage.qml" line="117"/>
+        <location filename="../qml/pages/AuthPage.qml" line="147"/>
+        <source>#signIn</source>
+        <translation>Sign in</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AuthPage.qml" line="115"/>
+        <source>#errorOccured</source>
+        <translation>An error occured:</translation>
     </message>
 </context>
 <context>
     <name>Cover</name>
     <message>
         <location filename="../qml/cover/Cover.qml" line="46"/>
-        <source>Directum Jazz</source>
-        <translation type="unfinished">Directum Jazz</translation>
+        <source>#coverName</source>
+        <translation>Directum Jazz</translation>
     </message>
 </context>
 </TS>
