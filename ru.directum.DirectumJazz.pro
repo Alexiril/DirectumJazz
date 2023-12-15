@@ -52,6 +52,8 @@ HEADERS += \
     headers/network.hpp
 
 DISTFILES += \
+    qml/pages/MailViewer.qml \
+    qml/pages/MailViewerItem.qml \
     qml/pages/Menu.qml \
     rpm/ru.directum.DirectumJazz.spec \
     AUTHORS.md \

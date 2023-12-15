@@ -56,13 +56,13 @@
         <translation>Enter password</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AuthPage.qml" line="117"/>
-        <location filename="../qml/pages/AuthPage.qml" line="147"/>
+        <location filename="../qml/pages/AuthPage.qml" line="115"/>
+        <location filename="../qml/pages/AuthPage.qml" line="150"/>
         <source>#signIn</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AuthPage.qml" line="115"/>
+        <location filename="../qml/pages/AuthPage.qml" line="120"/>
         <source>#errorOccured</source>
         <translation>An error occured:</translation>
     </message>
@@ -73,6 +73,14 @@
         <location filename="../qml/cover/Cover.qml" line="46"/>
         <source>#coverName</source>
         <translation>Directum Jazz</translation>
+    </message>
+</context>
+<context>
+    <name>MailViewer</name>
+    <message>
+        <location filename="../qml/pages/MailViewer.qml" line="72"/>
+        <source>Data: </source>
+        <translation>Data: </translation>
     </message>
 </context>
 </TS>

@@ -9,38 +9,25 @@ Page {
 
     DirectumData {
         id: directumData
-        onGetRequestIsFinished: {
-            if (request_answer_code !== 200)
-            {
-                requestAnswer.color = "red";
-                requestAnswer.text = request_answer;
-            }
-            else
-            {
-                requestAnswer.color = "black";
-                requestAnswer.text = json2string(string2json(request_answer), false)
+    }
+
+    ButtonLayout {
+
+        PageHeader {
+            id: menuHeader
+            objectName: "menuHeader"
+            anchors {horizontalCenter: parent.horizontalCenter}
+            title: directumData.get_user_login()
+        }
+
+        Button {
+            text: "Recent Assignments"
+            onClicked: {
+                directumData.mail_viewer_state = 1;
+                pageStack.push(Qt.resolvedUrl("MailViewer.qml"));
             }
         }
-    }
 
-    PageHeader {
-        id: menuHeader
-        objectName: "menuHeader"
-        anchors {horizontalCenter: parent.horizontalCenter}
-        title: directumData.get_user_login()
-    }
-
-    Label {
-        id: requestAnswer
-        objectName: "requestAnswer"
-        anchors { left: parent.left; right: parent.right; top: menuHeader.bottom; margins: Theme.horizontalPageMargin }
-        wrapMode: Label.WordWrap
-        text: ""
-    }
-
-    onVisibleChanged: {
-        if (this.visible)
-            directumData.make_get_request("GetTasksDisplayValues");
     }
 }
 

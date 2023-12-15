@@ -16,10 +16,10 @@ QString DirectumData::json2string(QJsonDocument json, bool compact) {
     return json.toJson(compact ? QJsonDocument::JsonFormat::Compact : QJsonDocument::JsonFormat::Indented);
 }
 
-void DirectumData::make_get_request(QString function) {
+void DirectumData::make_get_request(QString url) {
     QNetworkAccessManager* manager = new QNetworkAccessManager(this);
     QNetworkRequest request;
-    request.setUrl(QUrl("https://cpp-student.starkovgrp.ru/Integration/odata/DirectumAurora/" + function));
+    request.setUrl(QUrl("https://cpp-student.starkovgrp.ru/Integration/odata/" + url));
     request.setRawHeader("Authorization", ("Bearer " + token).toUtf8());
     auto reply = manager->get(request);
     QTimer timer;
@@ -39,7 +39,30 @@ void DirectumData::make_get_request(QString function) {
     connect(manager, &QNetworkAccessManager::finished, reply, &QNetworkReply::deleteLater);
 }
 
-void Auth::try_auth(const QString &login, const QString &password) {
+void DirectumData::make_post_request(QString url, QString params) {
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+    QNetworkRequest request;
+    request.setUrl(QUrl("https://cpp-student.starkovgrp.ru/Integration/odata/" + url));
+    request.setRawHeader("Authorization", ("Bearer " + token).toUtf8());
+    auto reply = manager->post(request, params.toUtf8());
+    QTimer timer;
+    timer.start(30000);
+    timer.setSingleShot(true);
+    connect(&timer, &QTimer::timeout, this, [&reply]() { reply->abort(); });
+    connect(manager, &QNetworkAccessManager::finished, [&](QNetworkReply* reply) {
+        if (reply->error())
+            request_answer_ = reply->errorString();
+        else
+            request_answer_ = QString(reply->readAll());
+        QVariant code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+        request_answer_code_ = code.isValid() ? code.toInt() : 0;
+        emit getRequestIsFinished();
+    });
+    connect(manager, &QNetworkAccessManager::finished, manager, &QNetworkAccessManager::deleteLater);
+    connect(manager, &QNetworkAccessManager::finished, reply, &QNetworkReply::deleteLater);
+}
+
+void DirectumData::try_auth(const QString &login, const QString &password) {
     QNetworkAccessManager* manager = new QNetworkAccessManager(this);
     QNetworkRequest request;
     request.setUrl(QUrl("https://cpp-student.starkovgrp.ru/Integration/token"));

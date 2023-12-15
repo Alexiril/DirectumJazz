@@ -108,18 +108,21 @@ Page {
             EnterKey.onClicked: auth_button.click();
         }
 
-        Auth {
+        DirectumData {
             id: auth
             function auth_finished() {
-                if (auth_result === Auth.Error) {
+                auth_button.visible = true;
+                auth_button.text = qsTr("#signIn");
+                auth_button.tried_auth = false;
+                error_label.text = "";
+                busyLabel.running = false;
+                if (auth_result === DirectumData.Error) {
                     error_label.text = qsTr("#errorOccured") + " \"" + auth.auth_err + "\".";
-                    auth_button.tried_auth = false;
-                    auth_button.text = qsTr("#signIn");
                 }
-                if (auth_result === Auth.Okay) {
-                    error_label.text = "";
+                if (auth_result === DirectumData.Okay) {
                     pageStack.replace(Qt.resolvedUrl("Menu.qml"))
                 }
+
                 return 0;
             }
 
@@ -147,7 +150,9 @@ Page {
             text: qsTr("#signIn")
             onClicked: {
                 if (!auth_button.tried_auth) {
+                    busyLabel.running = true;
                     auth.try_auth(login.text, password.text);
+                    auth_button.visible = false;
                     auth_button.text = "···";
                     auth_button.tried_auth = true;
                 }
@@ -159,6 +164,11 @@ Page {
             onAuthIsFinished: {
                 auth.auth_finished();
             }
+        }
+
+        BusyLabel {
+            id: busyLabel
+            running: false
         }
     }
 }
