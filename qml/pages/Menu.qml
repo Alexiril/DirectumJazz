@@ -19,15 +19,69 @@ Page {
             anchors {horizontalCenter: parent.horizontalCenter}
             title: directumData.get_user_login()
         }
-
         Button {
+            id: recent
             text: "Recent Assignments"
+            anchors{horizontalCenter: parent.horizontalCenter;
+                margins: Theme.horizontalPageMargin
+                top: menuHeader.bottom
+
+            }
             onClicked: {
                 directumData.mail_viewer_state = 1;
                 pageStack.push(Qt.resolvedUrl("MailViewer.qml"));
             }
+
+        }
+        Button {
+            id: recentq
+            text: "Recent Assignments"
+            anchors{horizontalCenter: parent.horizontalCenter;
+                margins: Theme.horizontalPageMargin
+                top: recent.bottom
+                
+
+            }
+            onClicked: {
+                directumData.mail_viewer_state = 1;
+                pageStack.push(Qt.resolvedUrl("MailViewer.qml"));
+            }
+
+        }
+        Button {
+            id: recentw
+            text: "Recent Assignments"
+            anchors{horizontalCenter: parent.horizontalCenter;
+                margins: Theme.horizontalPageMargin
+                top:  recentq.bottom
+                
+
+            }
+            onClicked: {
+                directumData.mail_viewer_state = 1;
+                pageStack.push(Qt.resolvedUrl("MailViewer.qml"));
+            }
+
+        }
+        Button {
+            id: recente
+            text: "Recent Assignments"
+            anchors{horizontalCenter: parent.horizontalCenter;
+                margins: Theme.horizontalPageMargin
+                top: recentw.bottom
+               
+
+            }
+            onClicked: {
+                directumData.mail_viewer_state = 1;
+                pageStack.push(Qt.resolvedUrl("MailViewer.qml"));
+            }
+
         }
 
+
+
     }
+
 }
 
