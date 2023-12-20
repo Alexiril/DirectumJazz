@@ -105,7 +105,7 @@ Page {
             placeholderText: qsTr("#enterPassword")
             echoMode: TextInput.Password
             inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
-            EnterKey.onClicked: auth_button.click();
+            EnterKey.onClicked: auth_button.onClicked();
         }
 
         DirectumData {

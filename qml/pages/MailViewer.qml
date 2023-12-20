@@ -9,22 +9,39 @@ Page {
     DirectumData {
         id: directumData
 
+        property var components_types: ({})
+
         onGetRequestIsFinished: {
-            console.log(request_answer)
             busyLabel.running = false
-            return;
             if (request_answer_code === 200) {
-                var json = JSON.parse(request_answer);
+                var json = JSON.parse(request_answer)
                 json.value.forEach(function(item) {
-                    var component = Qt.createComponent(Qt.resolvedUrl("MailViewerItem.qml"));
-                    component.Id = item.id;
-                    component.Type = item.type;
-                    directumData.make_get_request("I" + item.type + "s(" + item.Id + ")");
-                    mailListModel.append(component);
+                    var request = new XMLHttpRequest()
+                    var address = "https://cpp-student.starkovgrp.ru/Integration/odata/I" + item.type + "s(" + item.id + ")"
+                    components_types[item.id] = item.type
+                    request.open('GET', address)
+                    request.onreadystatechange = function() {
+                        if (request.readyState === XMLHttpRequest.DONE) {
+                            if (request.status && request.status === 200) {
+                                console.log(request.responseText)
+                                var result = JSON.parse(request.responseText)
+                                var component = Qt.createComponent(Qt.resolvedUrl("MailViewerItem.qml"))
+                                component.Id = result.Id
+                                component.Type = components_types[result.Id]
+                                component.TopicsName = result.Subject
+                                component.SupportData = result.Deadline
+                                mailListModel.append(component)
+                            } else {
+                                console.log("HTTP:", request.status, request.statusText)
+                            }
+                        }
+                    }
+                    request.setRequestHeader('Authorization', "Bearer " + directumData.get_user_token())
+                    request.send()
                 });
             }
             else {
-                pageStack.pull();
+                pageStack.pull()
             }
         }
     }
@@ -35,7 +52,8 @@ Page {
     }
 
     SilicaListView {
-        header: PageHeader {title: "table"}
+        id: mailListView
+        header: PageHeader {title: "Recent"}
         width: parent.width;
         height: parent.height
         model: ListModel {

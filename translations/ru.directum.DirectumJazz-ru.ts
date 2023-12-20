@@ -78,7 +78,7 @@
 <context>
     <name>MailViewer</name>
     <message>
-        <location filename="../qml/pages/MailViewer.qml" line="73"/>
+        <location filename="../qml/pages/MailViewer.qml" line="91"/>
         <source>Data: </source>
         <translation>Доп.: </translation>
     </message>
