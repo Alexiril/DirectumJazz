@@ -32,6 +32,59 @@
     </message>
 </context>
 <context>
+    <name>AssignmentsViewer</name>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="31"/>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="55"/>
+        <source>All tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="59"/>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="93"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="101"/>
+        <source>Abort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="111"/>
+        <source>Complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="161"/>
+        <source>Importance: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="172"/>
+        <source>Deadline: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="182"/>
+        <source>Status: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="192"/>
+        <source>Author: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AuthPage</name>
     <message>
         <location filename="../qml/pages/AuthPage.qml" line="53"/>
@@ -76,11 +129,11 @@
     </message>
 </context>
 <context>
-    <name>MailViewer</name>
+    <name>Menu</name>
     <message>
-        <location filename="../qml/pages/MailViewer.qml" line="91"/>
-        <source>Data: </source>
-        <translation>Доп.: </translation>
+        <location filename="../qml/pages/Menu.qml" line="25"/>
+        <source>Assignments</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -22,7 +22,7 @@ Page {
 
         Button {
             id: recent
-            text: "Recent Assignments"
+            text: qsTr("Assignments")
             anchors{horizontalCenter: parent.horizontalCenter;
                 margins: Theme.horizontalPageMargin
                 top: menuHeader.bottom
@@ -30,7 +30,7 @@ Page {
 
             onClicked: {
                 directumData.mail_viewer_state = 1;
-                pageStack.push(Qt.resolvedUrl("MailViewer.qml"));
+                pageStack.push(Qt.resolvedUrl("AssignmentsViewer.qml"));
             }
         }
 
