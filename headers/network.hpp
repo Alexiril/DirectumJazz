@@ -6,6 +6,7 @@
 
 static QString token = "";
 static QString user_login = "";
+static QString user_server = "";
 
 class DirectumData: public QObject {
     Q_OBJECT
@@ -17,10 +18,11 @@ public:
     enum AuthResult { Okay, Error, Await };
     Q_ENUM(AuthResult)
 
-    Q_INVOKABLE void try_auth(const QString &login, const QString &password);
+    Q_INVOKABLE void try_auth(const QString &server, const QString &login, const QString &password);
 
     Q_INVOKABLE QString get_user_login();
     Q_INVOKABLE QString get_user_token();
+    Q_INVOKABLE QString get_user_server();
     Q_INVOKABLE void make_get_request(QString url);
     Q_INVOKABLE void make_post_request(QString url, QString params);
 

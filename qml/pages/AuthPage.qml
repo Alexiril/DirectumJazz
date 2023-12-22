@@ -70,6 +70,24 @@ Page {
         }
 
         Label {
+            anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
+            color: palette.highlightColor
+            font.pixelSize: Theme.fontSizeSmall
+            textFormat: Text.RichText
+            wrapMode: Text.WordWrap
+            text: qsTr("#enterServer")
+        }
+
+        TextField{
+            id: server
+            width: parent.wight
+            anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
+            text: "cpp-student.starkovgrp.ru"
+            inputMethodHints: Qt.ImhUrlCharactersOnly
+            EnterKey.onClicked: auth_button.do_auth();
+        }
+
+        Label {
             objectName: "mainText"
             anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
             color: palette.highlightColor
@@ -85,7 +103,7 @@ Page {
             anchors { left: parent.left; right: parent.right; margins: Theme.horizontalPageMargin }
             placeholderText: qsTr("#enterLogin")
             inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
-            EnterKey.onClicked: auth_button.click();
+            EnterKey.onClicked: auth_button.do_auth();
         }
 
         Label {
@@ -105,24 +123,23 @@ Page {
             placeholderText: qsTr("#enterPassword")
             echoMode: TextInput.Password
             inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhUrlCharactersOnly
-            EnterKey.onClicked: auth_button.onClicked();
+            EnterKey.onClicked: auth_button.do_auth();
         }
 
         DirectumData {
             id: auth
             function auth_finished() {
-                auth_button.visible = true;
-                auth_button.text = qsTr("#signIn");
-                auth_button.tried_auth = false;
                 error_label.text = "";
                 busyLabel.running = false;
                 if (auth_result === DirectumData.Error) {
+                    auth_button.visible = true;
+                    auth_button.text = qsTr("#signIn");
+                    auth_button.tried_auth = false;
                     error_label.text = qsTr("#errorOccured") + " \"" + auth.auth_err + "\".";
                 }
                 if (auth_result === DirectumData.Okay) {
                     pageStack.replace(Qt.resolvedUrl("Menu.qml"))
                 }
-
                 return 0;
             }
 
@@ -149,15 +166,19 @@ Page {
             preferredWidth: Theme.buttonWidthMedium
             text: qsTr("#signIn")
             onClicked: {
+                do_auth()
+            }
+
+            function do_auth() {
                 if (!auth_button.tried_auth) {
                     busyLabel.running = true;
-                    auth.try_auth(login.text, password.text);
+                    auth.try_auth(server.text, login.text, password.text);
                     auth_button.visible = false;
                     auth_button.text = "···";
                     auth_button.tried_auth = true;
                 }
             }
-        }        
+        }
 
         Connections {
             target: auth

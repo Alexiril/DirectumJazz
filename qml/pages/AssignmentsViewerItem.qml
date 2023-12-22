@@ -8,6 +8,8 @@ ListElement {
     Important: false
     Status: ""
     InProcess: false
+    IsReview: false
+    Result: ""
     MainTaskId: 0
     Id: 0
 }

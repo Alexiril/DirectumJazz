@@ -34,53 +34,73 @@
 <context>
     <name>AssignmentsViewer</name>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="31"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="32"/>
         <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="55"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="59"/>
         <source>All tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="59"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="63"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="93"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="97"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="101"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="105"/>
         <source>Abort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="111"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="105"/>
+        <source>Rework</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="116"/>
         <source>Complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="161"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="116"/>
+        <source>Accept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="154"/>
+        <source> (Review)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="171"/>
         <source>Importance: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="172"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="182"/>
         <source>Deadline: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="182"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="192"/>
         <source>Status: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="192"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="202"/>
         <source>Author: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="213"/>
+        <source>Result: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -97,25 +117,30 @@
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AuthPage.qml" line="79"/>
-        <location filename="../qml/pages/AuthPage.qml" line="86"/>
+        <location filename="../qml/pages/AuthPage.qml" line="78"/>
+        <source>#enterServer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AuthPage.qml" line="97"/>
+        <location filename="../qml/pages/AuthPage.qml" line="104"/>
         <source>#enterLogin</source>
         <translation>Enter login</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AuthPage.qml" line="98"/>
-        <location filename="../qml/pages/AuthPage.qml" line="105"/>
+        <location filename="../qml/pages/AuthPage.qml" line="116"/>
+        <location filename="../qml/pages/AuthPage.qml" line="123"/>
         <source>#enterPassword</source>
         <translation>Enter password</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AuthPage.qml" line="115"/>
-        <location filename="../qml/pages/AuthPage.qml" line="150"/>
+        <location filename="../qml/pages/AuthPage.qml" line="136"/>
+        <location filename="../qml/pages/AuthPage.qml" line="167"/>
         <source>#signIn</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AuthPage.qml" line="120"/>
+        <location filename="../qml/pages/AuthPage.qml" line="138"/>
         <source>#errorOccured</source>
         <translation>An error occured:</translation>
     </message>

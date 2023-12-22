@@ -8,6 +8,10 @@ QString DirectumData::get_user_token() {
     return token;
 }
 
+QString DirectumData::get_user_server() {
+    return user_server;
+}
+
 QJsonDocument DirectumData::string2json(QString json) {
     return QJsonDocument::fromJson(json.toUtf8());
 }
@@ -19,7 +23,7 @@ QString DirectumData::json2string(QJsonDocument json, bool compact) {
 void DirectumData::make_get_request(QString url) {
     QNetworkAccessManager* manager = new QNetworkAccessManager(this);
     QNetworkRequest request;
-    request.setUrl(QUrl("https://cpp-student.starkovgrp.ru/Integration/odata/" + url));
+    request.setUrl(QUrl("https://" + user_server + "/Integration/odata/" + url));
     request.setRawHeader("Authorization", ("Bearer " + token).toUtf8());
     auto reply = manager->get(request);
     QTimer timer;
@@ -42,7 +46,7 @@ void DirectumData::make_get_request(QString url) {
 void DirectumData::make_post_request(QString url, QString params) {
     QNetworkAccessManager* manager = new QNetworkAccessManager(this);
     QNetworkRequest request;
-    request.setUrl(QUrl("https://cpp-student.starkovgrp.ru/Integration/odata/" + url));
+    request.setUrl(QUrl("https://" + user_server + "/Integration/odata/" + url));
     request.setRawHeader("Authorization", ("Bearer " + token).toUtf8());
     auto reply = manager->post(request, params.toUtf8());
     QTimer timer;
@@ -62,13 +66,14 @@ void DirectumData::make_post_request(QString url, QString params) {
     connect(manager, &QNetworkAccessManager::finished, reply, &QNetworkReply::deleteLater);
 }
 
-void DirectumData::try_auth(const QString &login, const QString &password) {
+void DirectumData::try_auth(const QString &server, const QString &login, const QString &password) {
     QNetworkAccessManager* manager = new QNetworkAccessManager(this);
     QNetworkRequest request;
-    request.setUrl(QUrl("https://cpp-student.starkovgrp.ru/Integration/token"));
+    request.setUrl(QUrl("https://" + server + "/Integration/token"));
     request.setRawHeader("Username", login.toUtf8());
     request.setRawHeader("Password", password.toUtf8());
     user_login = login;
+    user_server = server;
     auto reply = manager->get(request);
     auth_result_ = AuthResult::Await;
     QTimer timer;

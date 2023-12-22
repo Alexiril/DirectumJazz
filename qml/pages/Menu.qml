@@ -34,35 +34,35 @@ Page {
             }
         }
 
-        Button {
-            id: a
-            text: "1"
-            anchors{horizontalCenter: parent.horizontalCenter;
-                margins: Theme.horizontalPageMargin
-                top: recent.bottom
-            }
-            onClicked: {}
-        }
+//        Button {
+//            id: a
+//            text: "1"
+//            anchors{horizontalCenter: parent.horizontalCenter;
+//                margins: Theme.horizontalPageMargin
+//                top: recent.bottom
+//            }
+//            onClicked: {}
+//        }
 
-        Button {
-            id: b
-            text: "2"
-            anchors{horizontalCenter: parent.horizontalCenter;
-                margins: Theme.horizontalPageMargin
-                top:  a.bottom
-            }
-            onClicked: {}
-        }
+//        Button {
+//            id: b
+//            text: "2"
+//            anchors{horizontalCenter: parent.horizontalCenter;
+//                margins: Theme.horizontalPageMargin
+//                top:  a.bottom
+//            }
+//            onClicked: {}
+//        }
 
-        Button {
-            id: c
-            text: "3"
-            anchors{horizontalCenter: parent.horizontalCenter;
-                margins: Theme.horizontalPageMargin
-                top: b.bottom
-            }
-            onClicked: {}
-        }
+//        Button {
+//            id: c
+//            text: "3"
+//            anchors{horizontalCenter: parent.horizontalCenter;
+//                margins: Theme.horizontalPageMargin
+//                top: b.bottom
+//            }
+//            onClicked: {}
+//        }
     }
 }
 

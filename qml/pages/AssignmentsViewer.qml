@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 import Sailfish.Silica 1.0
 import Directum.Network 1.0
 
@@ -21,6 +21,7 @@ Page {
         onGetRequestIsFinished: {
             busyLabel.running = false
             if (request_answer_code === 200) {
+                mailListView.visible = true
                 var json = JSON.parse(request_answer)
                 json.value.forEach(function(result) {
                     var component = Qt.createComponent(Qt.resolvedUrl("AssignmentsViewerItem.qml"))
@@ -34,10 +35,13 @@ Page {
                     component.Author = result.Author.Name
                     component.Status = result.Status.replace(/([A-Z])/g, ' $1').trim()
                     component.InProcess = result.Status === "InProcess"
+                    if (!component.InProcess)
+                        component.Result = result.Result.replace(/([A-Z])/g, ' $1').trim()
                     component.Importance = result.Importance
                     component.Important = result.Importance === "High" && component.InProcess
+                    component.IsReview = /.*Review.*/.test(result["@odata.type"])
                     mailListModel.append(component)
-                });
+                })
             }
             else {
                 pageStack.pull()
@@ -80,7 +84,7 @@ Page {
             }
 
             width: parent.width
-            contentHeight: Theme.itemSizeLarge + Theme.itemSizeSmall
+            contentHeight: Theme.itemSizeLarge + (InProcess ? Theme.itemSizeSmall : Theme.itemSizeLarge)
             anchors {
                 left: parent.left
                 right: parent.right
@@ -98,41 +102,48 @@ Page {
 
                     MenuItem {
                         visible: InProcess
-                        text: qsTr("Abort")
+                        text: IsReview ? qsTr("Rework") : qsTr("Abort")
                         onClicked: {
                             if (!InProcess)
                                 return
-                            console.log("Aborting task (and all assigments) with id=" + MainTaskId)
+                            console.log("Aborting or sending for rework .id=" + Id)
                         }
                     }
 
                     MenuItem {
+                        id: selfMenuItem
                         visible: InProcess
-                        text: qsTr("Complete")
+                        text: IsReview ? qsTr("Accept") : qsTr("Complete")
                         onClicked: {
                             if (!InProcess)
                                 return
-                            busyLabel.running = true
                             var request = new XMLHttpRequest()
-                            var address = "https://cpp-student.starkovgrp.ru/Integration/odata/Docflow/CompleteAssignment"
+                            var address = "https://" + directumData.get_user_server() + "/Integration/odata/Docflow/CompleteAssignment"
                             request.open('POST', address, true)
                             request.onreadystatechange = function() {
                                 if (request.readyState === XMLHttpRequest.DONE) {
-                                    if (request.status && (request.status === 200 || request.status === 204)) {
-                                        console.log("done")
-                                        page.update()
-                                    } else {
+                                    if (!request.status || (request.status !== 200 && request.status !== 204)) {
                                         console.log("HTTP:", request.status, request.statusText, request.responseText)
                                     }
-                                    busyLabel.running = false;
+                                    busyLabel.running = false
+                                    page.update()
                                 }
+                                console.log(request.readyState)
                             }
+                            var timer = Qt.createQmlObject("import QtQuick 2.3; Timer {interval: 10000; repeat: false; running: true;}",page,"TooLongTimer")
+                            timer.triggered.connect(function(){
+                                page.update()
+                            })
+                            request.setRequestHeader('Host', directumData.get_user_server())
                             request.setRequestHeader('Authorization', "Bearer " + directumData.get_user_token())
                             request.setRequestHeader('Content-Type', 'application/json')
-                            const params = JSON.stringify({ assignmentId: Id, result: "Complete" })
+                            const task_result = IsReview ? "Accepted" : "Complete"
+                            const params = JSON.stringify({ assignmentId: Id, result: task_result })
                             console.log(params)
-                            request.setRequestHeader("Content-length", params.length);
+                            request.setRequestHeader("Content-Length", params.length);
                             request.send(params)
+                            busyLabel.running = true
+                            mailListView.visible = false
                         }
                     }
                 }
@@ -140,7 +151,7 @@ Page {
 
             Label {
                 id: topicsName
-                text: TopicsName
+                text: TopicsName + (IsReview ? qsTr(" (Review)") : "")
                 font.pixelSize: Theme.fontSizeMedium
                 color: Theme.highlightColor
                 anchors {
@@ -192,6 +203,17 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 anchors {
                     top: status.bottom
+                }
+                x: Theme.paddingLarge
+            }
+
+            Label {
+                id: result
+                visible: !InProcess
+                text: qsTr("Result: ") + (InProcess ? "" : qsTr(Result))
+                font.pixelSize: Theme.fontSizeSmall
+                anchors {
+                    top: author.bottom
                 }
                 x: Theme.paddingLarge
             }
