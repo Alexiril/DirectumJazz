@@ -16,7 +16,7 @@ Page {
     DirectumData {
         id: directumData
 
-        property var components_types: ({})
+        property var hided_elements: ({})
 
         onGetRequestIsFinished: {
             busyLabel.running = false
@@ -24,6 +24,8 @@ Page {
                 mailListView.visible = true
                 var json = JSON.parse(request_answer)
                 json.value.forEach(function(result) {
+                    if (hided_elements[result.Id] !== undefined)
+                        return
                     var component = Qt.createComponent(Qt.resolvedUrl("AssignmentsViewerItem.qml"))
                     component.Id = result.Id
                     component.MainTaskId = result.MainTask.Id
@@ -96,7 +98,17 @@ Page {
                     MenuItem {
                         text: qsTr("Open")
                         onClicked: {
-                            console.log("Opening assignment with id=" + Id + " and main task id=" + MainTaskId)
+                            directumData.set_reg(0, Id)
+                            pageStack.push(Qt.resolvedUrl("AssignmentView.qml"))
+                        }
+                    }
+
+                    MenuItem {
+                        text: qsTr("Hide")
+                        visible: !InProcess
+                        onClicked: {
+                            directumData.hided_elements[Id] = 0
+                            page.update()
                         }
                     }
 
@@ -104,19 +116,41 @@ Page {
                         visible: InProcess
                         text: IsReview ? qsTr("Rework") : qsTr("Abort")
                         onClicked: {
-                            if (!InProcess)
-                                return
-                            console.log("Aborting or sending for rework .id=" + Id)
+                            var request = new XMLHttpRequest()
+                            var address = "https://" + directumData.get_user_server() + (IsReview ? "/Integration/odata/Docflow/CompleteAssignment" : "/Integration/odata/Shell/AbortTask")
+                            request.open('POST', address, true)
+                            request.onreadystatechange = function() {
+                                if (request.readyState === XMLHttpRequest.DONE) {
+                                    if (!request.status || (request.status !== 200 && request.status !== 204)) {
+                                        console.log("HTTP:", request.status, request.statusText, request.responseText)
+                                    }
+                                    busyLabel.running = false
+                                    page.update()
+                                }
+                                console.log(request.readyState)
+                            }
+                            var timer = Qt.createComponent(Qt.resolvedUrl("TooLongTimer.qml"), Component.PreferSynchronous, page)
+                            if (timer.status === Component.Ready) {
+                                timer.createObject(page).triggered.connect(function(){
+                                    parent.update()
+                                })
+                            }
+                            request.setRequestHeader('Host', directumData.get_user_server())
+                            request.setRequestHeader('Authorization', "Bearer " + directumData.get_user_token())
+                            request.setRequestHeader('Content-Type', 'application/json')
+                            const params = JSON.stringify((IsReview ? { assignmentId: Id, result: "ForRework" } : { taskId: MainTaskId }))
+                            console.log(params)
+                            request.setRequestHeader("Content-Length", params.length);
+                            request.send(params)
+                            busyLabel.running = true
+                            mailListView.visible = false
                         }
                     }
 
                     MenuItem {
-                        id: selfMenuItem
                         visible: InProcess
                         text: IsReview ? qsTr("Accept") : qsTr("Complete")
                         onClicked: {
-                            if (!InProcess)
-                                return
                             var request = new XMLHttpRequest()
                             var address = "https://" + directumData.get_user_server() + "/Integration/odata/Docflow/CompleteAssignment"
                             request.open('POST', address, true)
@@ -130,10 +164,12 @@ Page {
                                 }
                                 console.log(request.readyState)
                             }
-                            var timer = Qt.createQmlObject("import QtQuick 2.3; Timer {interval: 10000; repeat: false; running: true;}",page,"TooLongTimer")
-                            timer.triggered.connect(function(){
-                                page.update()
-                            })
+                            var timer = Qt.createComponent(Qt.resolvedUrl("TooLongTimer.qml"), Component.PreferSynchronous, page)
+                            if (timer.status === Component.Ready) {
+                                timer.createObject(page).triggered.connect(function(){
+                                    parent.update()
+                                })
+                            }
                             request.setRequestHeader('Host', directumData.get_user_server())
                             request.setRequestHeader('Authorization', "Bearer " + directumData.get_user_token())
                             request.setRequestHeader('Content-Type', 'application/json')

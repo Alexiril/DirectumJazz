@@ -29,7 +29,6 @@ Page {
             }
 
             onClicked: {
-                directumData.mail_viewer_state = 1;
                 pageStack.push(Qt.resolvedUrl("AssignmentsViewer.qml"));
             }
         }

@@ -34,74 +34,79 @@
 <context>
     <name>AssignmentsViewer</name>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="32"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="34"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Never</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="59"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="61"/>
         <source>All tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>All tasks</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="63"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="65"/>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Update</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="97"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="99"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Open</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="105"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="107"/>
+        <source>Hide</source>
+        <translation>Hide</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="117"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Abort</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="105"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="117"/>
         <source>Rework</source>
-        <translation type="unfinished"></translation>
+        <translation>Rework</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="116"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="152"/>
         <source>Complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Complete</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="116"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="152"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Accept</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="154"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="190"/>
         <source> (Review)</source>
-        <translation type="unfinished"></translation>
+        <translation> (Review)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="171"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="207"/>
         <source>Importance: </source>
-        <translation type="unfinished"></translation>
+        <translation>Importance: </translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="182"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="218"/>
         <source>Deadline: </source>
-        <translation type="unfinished"></translation>
+        <translation>Deadline: </translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="192"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="228"/>
         <source>Status: </source>
-        <translation type="unfinished"></translation>
+        <translation>Status: </translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="202"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="238"/>
         <source>Author: </source>
-        <translation type="unfinished"></translation>
+        <translation>Author: </translation>
     </message>
     <message>
-        <location filename="../qml/pages/AssignmentsViewer.qml" line="213"/>
+        <location filename="../qml/pages/AssignmentsViewer.qml" line="249"/>
         <source>Result: </source>
-        <translation type="unfinished"></translation>
+        <translation>Result: </translation>
     </message>
 </context>
 <context>
@@ -119,7 +124,7 @@
     <message>
         <location filename="../qml/pages/AuthPage.qml" line="78"/>
         <source>#enterServer</source>
-        <translation type="unfinished"></translation>
+        <translation>Enter server</translation>
     </message>
     <message>
         <location filename="../qml/pages/AuthPage.qml" line="97"/>
@@ -158,7 +163,7 @@
     <message>
         <location filename="../qml/pages/Menu.qml" line="25"/>
         <source>Assignments</source>
-        <translation type="unfinished"></translation>
+        <translation>Assignments</translation>
     </message>
 </context>
 </TS>

@@ -97,3 +97,11 @@ void DirectumData::try_auth(const QString &server, const QString &login, const Q
     connect(manager, &QNetworkAccessManager::finished, manager, &QNetworkAccessManager::deleteLater);
     connect(manager, &QNetworkAccessManager::finished, reply, &QNetworkReply::deleteLater);
 }
+
+QVariant DirectumData::get_reg(qint64 index) {
+    return regs.count(index) > 0 ? regs[index] : QVariant();
+}
+
+void DirectumData::set_reg(qint64 index, QVariant value) {
+    regs[index] = value;
+}

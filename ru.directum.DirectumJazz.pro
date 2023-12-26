@@ -52,9 +52,11 @@ HEADERS += \
     headers/network.hpp
 
 DISTFILES += \
+    qml/pages/AssignmentView.qml \
     qml/pages/AssignmentsViewer.qml \
     qml/pages/AssignmentsViewerItem.qml \
     qml/pages/Menu.qml \
+    qml/pages/TooLongTimer.qml \
     rpm/ru.directum.DirectumJazz.spec \
     AUTHORS.md \
     CODE_OF_CONDUCT.md \

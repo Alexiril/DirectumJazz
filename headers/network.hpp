@@ -7,6 +7,7 @@
 static QString token = "";
 static QString user_login = "";
 static QString user_server = "";
+static QMap<qint64, QVariant> regs;
 
 class DirectumData: public QObject {
     Q_OBJECT
@@ -34,14 +35,14 @@ public:
     Q_PROPERTY(QString request_answer MEMBER request_answer_)
     Q_PROPERTY(qint64 request_answer_code MEMBER request_answer_code_)
 
-    Q_PROPERTY(qint8 mail_viewer_state MEMBER mail_viewer_state_)
+    Q_INVOKABLE QVariant get_reg(qint64 index);
+    Q_INVOKABLE void set_reg(qint64 index, QVariant value);
 
 private:
     QString request_answer_ = "";
     qint64 request_answer_code_ = 0;
     QString auth_err_ = "";
     AuthResult auth_result_ = AuthResult::Await;
-    qint8 mail_viewer_state_ = 0;
 };
 
 #endif // NETWORK_H
